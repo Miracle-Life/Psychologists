@@ -20,7 +20,7 @@
     "autoprefixer-stylus": "^1.0.0",
     "prop-types": "^15.6.2",
     "re-base": "^4.0.0",
-    "firebase": "^8.6.2"
+    "firebase": "^8.6.8"
   },
   "scripts": {
     "start": "react-scripts start",
