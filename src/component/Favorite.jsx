@@ -1,1 +1,1 @@
-import React from "react";const Favorite =()=>{    return(        <div>Favorite</div>    )}export default Favorite
+import React from "react";const Favorite =()=>{    return(        <div className='container'>Favorite DENIS</div>    )}export default Favorite
