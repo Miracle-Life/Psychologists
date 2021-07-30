@@ -6,9 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Routers from "./component/Router";
 
 ReactDOM.render(
-
-          <Routers/>,
-  document.getElementById('root')
+    <Routers/>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
