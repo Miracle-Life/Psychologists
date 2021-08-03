@@ -31,6 +31,7 @@ function Users() {
             [...updatePsychologistsFavorite]
         )
     }
+
     //удаляем пользователя с нашей базы Firebase
     const deleteUser = (index) => {
         setTimeout(() => {
