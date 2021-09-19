@@ -1,7 +1,8 @@
-import React from "react";
-import {db} from "../base";
+import React from 'react';
+import {db} from "../../base";
+import {child, update, push, ref, set, get} from "firebase/database";
 
-function App() {
+const AddUser = () => {
     let User
     const nameRef = React.createRef();
     const emailRef = React.createRef();
@@ -20,7 +21,7 @@ function App() {
         event.preventDefault();
         //проверка что мы получаем из нашей формы name
         // console.log(this.nameRef.current.value);
-        //обьект что принимает все значения из нашей формы
+        //объект что принимает все значения из нашей формы
         const user = {
             name: nameRef.current.value,
             email: emailRef.current.value,
@@ -29,10 +30,14 @@ function App() {
         };
         //проверка - что мы получаем из полей в нашей форме
         // console.log(user);
-        const adaRef = db.ref('psycologists');
-        adaRef.child(user.name).child('email').set(user.email)
-        adaRef.child(user.name).child('type').set(user.type)
-        adaRef.child(user.name).child('photo').set(user.photo === '' ? 'null' : user.photo)
+
+        set(ref(db, '/psychologists/' + user.name), {
+            email: user.email,
+            followed: false,
+            id: Math.floor(Math.random() * 1000000),
+            photo: user.photo === '' ? 'null' : user.photo,
+            type: user.type
+        });
         event.currentTarget.reset();
         console.log(`Пользователь   ${user.name}   добавлен в базу`)
     }
@@ -101,10 +106,7 @@ function App() {
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div>
-    );
+    )
+};
 
-}
-
-export default App
-
-
+export default AddUser;
