@@ -10,13 +10,16 @@ import Alert from "../common/Alert/Alert";
 class UsersContainer extends Component {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        const starCountRef = ref(db, "psychologists");
-        onValue(starCountRef, (res) => {
-            const data = res.val();
-            this.props.setUsers(data)
-            this.props.toggleIsFetching(false)
-        });
+        setTimeout(() => {
+            this.props.toggleIsFetching(true)
+            const starCountRef = ref(db, "psychologists");
+            onValue(starCountRef, (res) => {
+                const data = res.val();
+                this.props.setUsers(data)
+                this.props.toggleIsFetching(false)
+            });
+        }, 2500)
+
     }
 
     render() {
