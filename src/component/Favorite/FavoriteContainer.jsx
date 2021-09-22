@@ -6,18 +6,13 @@ import {ref, child, onValue, get} from "firebase/database";
 import {db} from "../../base";
 import Preloader from "../common/Preloader/Preloader";
 import Alert from "../common/Alert/Alert";
+import {getUsers} from "../Api/api";
 
 
 class FavoriteContainer extends Component {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        const starCountRef = ref(db, "psychologists");
-        onValue(starCountRef, (res) => {
-            const data = res.val();
-            this.props.setUsers(data)
-            this.props.toggleIsFetching(false)
-        });
+        getUsers(this.props.toggleIsFetching, this.props.setUsers,)
     }
 
     render() {

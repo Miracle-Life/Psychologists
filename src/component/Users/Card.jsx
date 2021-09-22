@@ -5,6 +5,8 @@ import {db} from "../../base";
 
 const Card = (props) => {
     // debugger
+
+
     return (
         <div>
             <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -17,20 +19,14 @@ const Card = (props) => {
                                  alt="..."/>
                             <div className="card-body">
                                 <h4 className="card-title mb-4">{user}</h4>
-                                <p className="card-text">
-                                    <h6 className="text-muted">
-                                        Специальность: {props.info[user].type}
-                                    </h6>
+                                <p className="card-text text-muted">
+                                    Специальность: {props.info[user].type}
                                 </p>
-                                <p className="card-text">
-                                    <small className="text-muted">
-                                        Email: {props.info[user].email}
-                                    </small>
+                                <p className="card-text text-muted">
+                                    Email: {props.info[user].email}
                                 </p>
-                                <p className="card-text">
-                                    <small className="text-muted">
-                                        Id: {props.info[user].id}
-                                    </small>
+                                <p className="card-text text-muted">
+                                    Id: {props.info[user].id}
                                 </p>
                             </div>
                             <div className="card-footer d-flex justify-content-between ">
