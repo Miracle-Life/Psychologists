@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useEffect} from "react";
 import {connect} from "react-redux";
 import Disfavoured from "./Disfavoured";
 import {follow, setUsers, toggleIsFetching, unfollow} from "../../store/actions";
@@ -9,33 +9,39 @@ import Alert from "../common/Alert/Alert";
 import {getUsers} from "../Api/api";
 
 
-class DisfavoredContainer extends Component {
+const DisfavoredContainer = (props) => {
 
-    componentDidMount() {
-        getUsers(this.props.toggleIsFetching, this.props.setUsers,)
-    }
+    // componentDidMount() {
+    //     getUsers(this.props.toggleIsFetching, this.props.setUsers,)
+    // }
 
-    render() {
-        return (
-            <>
-                {!this.props.users ?
-                    <Alert/>
-                    :
-                    <>
-                        {this.props.isFetching ?
-                            <Preloader/>
-                            :
-                            <Disfavoured
-                                users={this.props.users}
-                                follow={this.props.follow}
-                                unfollow={this.props.unfollow}
-                            />
-                        }
-                    </>
-                }
-            </>
-        );
-    }
+    useEffect(() => {
+        //получаем пользователей с нашей базы Firebase и выводим их
+        getUsers(props.toggleIsFetching, props.setUsers,)
+
+    }, [])
+
+
+    return (
+        <>
+            {!props.users ?
+                <Alert/>
+                :
+                <>
+                    {props.isFetching ?
+                        <Preloader/>
+                        :
+                        <Disfavoured
+                            users={props.users}
+                            follow={props.follow}
+                            unfollow={props.unfollow}
+                        />
+                    }
+                </>
+            }
+        </>
+    );
+
 }
 
 

@@ -1,11 +1,9 @@
 import React from 'react';
-import image from "../../img/post.jpeg";
+import image from "../../img/img1.jpg";
 import {child, update, push, ref, set, get} from "firebase/database";
 import {db} from "../../base";
 
 const Card = (props) => {
-    // debugger
-
 
     return (
         <div>
@@ -31,6 +29,32 @@ const Card = (props) => {
                             </div>
                             <div className="card-footer d-flex justify-content-between ">
 
+                                {/*{props.info[user].followed*/}
+                                {/*    ?*/}
+                                {/*    <button disabled={props.inProgress.some(id => id === props.info[user].id)}*/}
+                                {/*            className='btn btn-secondary' onClick={() => {*/}
+                                {/*        props.toggleInProgress(true, props.info[user].id)*/}
+                                {/*        setTimeout(() => {*/}
+                                {/*            const r = ref(db, '/psychologists/' + user)*/}
+                                {/*            update(r, {"followed": false})*/}
+                                {/*            props.toggleInProgress(false, props.info[user].id)*/}
+                                {/*        }, 500)*/}
+                                {/*        // props.unfollow(props.info[user].id)*/}
+                                {/*    }}>Unfollow</button>*/}
+                                {/*    :*/}
+                                {/*    <button disabled={props.inProgress.some(id => id === props.info[user].id)}*/}
+                                {/*            className='btn btn-success' onClick={() => {*/}
+                                {/*        props.toggleInProgress(true, props.info[user].id)*/}
+                                {/*        setTimeout(() => {*/}
+                                {/*            const r = ref(db, '/psychologists/' + user)*/}
+                                {/*            update(r, {"followed": true})*/}
+                                {/*            props.toggleInProgress(false, props.info[user].id)*/}
+                                {/*        }, 500)*/}
+
+                                {/*        // props.follow(props.info[user].id)*/}
+                                {/*    }}>Follow</button>}*/}
+
+
                                 <button
                                     className={` ${props.info[user].followed ? 'btn btn-secondary' : 'btn btn-success'}`}
                                     onClick={() => {
@@ -41,6 +65,7 @@ const Card = (props) => {
                                             :
                                             update(r, {"followed": true})
                                         // props.follow(props.info[user].id)
+
                                     }}
                                 >
                                     {props.info[user].followed ? 'Unfollow' : "Follow"}

@@ -1,17 +1,14 @@
-import React, {useEffect} from "react";
-import image from './../../img/post.jpeg'
-import {db, dbFirestore, dbRef} from "../../base";
-import {child, update, push, ref, set, get} from "firebase/database";
+import React from "react";
 import Card from "./Card";
-import {collection, getDocs} from "firebase/firestore";
-import {doc, setDoc} from "firebase/firestore";
+
 
 const Users = (props) => {
     const user = Object.keys(props.users)
     const info = props.users
     const follow = props.follow
     const unfollow = props.unfollow
-
+    const toggleInProgress = props.toggleInProgress
+    const inProgress = props.favoriteInProgress
 
     return (
         <div className='container'>
@@ -21,6 +18,8 @@ const Users = (props) => {
                 info={info}
                 follow={follow}
                 unfollow={unfollow}
+                toggleInProgress={toggleInProgress}
+                inProgress={inProgress}
             />
         </div>
 
