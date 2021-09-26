@@ -1,7 +1,5 @@
 import React from 'react';
 import image from "../../img/img1.jpg";
-import {child, update, push, ref, set, get} from "firebase/database";
-import {db} from "../../base";
 
 const Card = (props) => {
 
@@ -32,47 +30,35 @@ const Card = (props) => {
                                 {/*{props.info[user].followed*/}
                                 {/*    ?*/}
                                 {/*    <button disabled={props.inProgress.some(id => id === props.info[user].id)}*/}
-                                {/*            className='btn btn-secondary' onClick={() => {*/}
-                                {/*        props.toggleInProgress(true, props.info[user].id)*/}
-                                {/*        setTimeout(() => {*/}
-                                {/*            const r = ref(db, '/psychologists/' + user)*/}
-                                {/*            update(r, {"followed": false})*/}
-                                {/*            props.toggleInProgress(false, props.info[user].id)*/}
-                                {/*        }, 500)*/}
-                                {/*        // props.unfollow(props.info[user].id)*/}
-                                {/*    }}>Unfollow</button>*/}
+                                {/*            className='btn btn-secondary'*/}
+                                {/*            onClick={() => {*/}
+                                {/*                props.unfollowing(props.info[user].id, user)*/}
+                                {/*            }}>Unfollow</button>*/}
                                 {/*    :*/}
                                 {/*    <button disabled={props.inProgress.some(id => id === props.info[user].id)}*/}
-                                {/*            className='btn btn-success' onClick={() => {*/}
-                                {/*        props.toggleInProgress(true, props.info[user].id)*/}
-                                {/*        setTimeout(() => {*/}
-                                {/*            const r = ref(db, '/psychologists/' + user)*/}
-                                {/*            update(r, {"followed": true})*/}
-                                {/*            props.toggleInProgress(false, props.info[user].id)*/}
-                                {/*        }, 500)*/}
-
-                                {/*        // props.follow(props.info[user].id)*/}
-                                {/*    }}>Follow</button>}*/}
+                                {/*            className='btn btn-success'*/}
+                                {/*            onClick={() => {*/}
+                                {/*                props.following(props.info[user].id, user)*/}
+                                {/*            }}>Follow</button>}*/}
 
 
                                 <button
                                     className={` ${props.info[user].followed ? 'btn btn-secondary' : 'btn btn-success'}`}
+                                    disabled={props.inProgress.some(id => id === props.info[user].id)}
                                     onClick={() => {
-                                        const r = ref(db, '/psychologists/' + user)
                                         props.info[user].followed ?
-                                            update(r, {"followed": false})
-                                            // props.unfollow(props.info[user].id)
+                                            props.unfollowing(props.info[user].id, user)
                                             :
-                                            update(r, {"followed": true})
-                                        // props.follow(props.info[user].id)
-
+                                            props.following(props.info[user].id, user)
                                     }}
                                 >
                                     {props.info[user].followed ? 'Unfollow' : "Follow"}
                                 </button>
-                                <button className='btn btn-danger' onClick={() => {
-                                    set(ref(db, '/psychologists/' + user), null)
-                                }}>Delete
+                                <button
+                                    className='btn btn-danger'
+                                    onClick={() => {
+                                        props.delUser(props.info[user].id, user)
+                                    }}>Delete
                                 </button>
 
 

@@ -5,10 +5,12 @@ import Card from "./Card";
 const Users = (props) => {
     const user = Object.keys(props.users)
     const info = props.users
-    const follow = props.follow
-    const unfollow = props.unfollow
     const toggleInProgress = props.toggleInProgress
     const inProgress = props.favoriteInProgress
+    const following = props.following
+    const unfollowing = props.unfollowing
+    const delUser = props.delUser
+
 
     return (
         <div className='container'>
@@ -16,10 +18,11 @@ const Users = (props) => {
             <Card
                 users={user}
                 info={info}
-                follow={follow}
-                unfollow={unfollow}
                 toggleInProgress={toggleInProgress}
                 inProgress={inProgress}
+                following={following}
+                unfollowing={unfollowing}
+                delUser={delUser}
             />
         </div>
 

@@ -1,6 +1,5 @@
 import {getDatabase, ref, child, get, update} from "firebase/database";
-import {initializeApp} from 'firebase/app';
-import {getAnalytics, logEvent} from "firebase/analytics";
+import { initializeApp } from "firebase/app";
 import {getFirestore} from "firebase/firestore"
 
 export const firebaseApp = initializeApp({
@@ -15,7 +14,7 @@ export const firebaseApp = initializeApp({
 })
 export const db = getDatabase()
 export const dbRef = ref(getDatabase());
-
+//
 export const dbFirestore = getFirestore()
 
 // export const analytics = getAnalytics();
@@ -53,6 +52,7 @@ export const dbFirestore = getFirestore()
 //     // doc.data() will be undefined in this case
 //     console.log("No such document!");
 // }
+
 
 //установить значение в базу Firestore
 // await setDoc(doc(dbFirestore, "psychologists", "Darya Skakun"), {

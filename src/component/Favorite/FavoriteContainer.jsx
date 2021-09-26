@@ -1,26 +1,25 @@
 import React, {Component, useEffect} from 'react';
 import {connect} from "react-redux";
-import {follow, setUsers, toggleIsFetching, unfollow,} from "../../store/actions";
+import {
+    acceptUnfollow,
+    delUser,
+    following,
+    getUsersThunkCreator,
+    toggleInProgress,
+    unfollowing,
+} from "../../store/actions";
 import Favorite from "./Favorite";
-import {ref, child, onValue, get} from "firebase/database";
-import {db} from "../../base";
 import Preloader from "../common/Preloader/Preloader";
 import Alert from "../common/Alert/Alert";
-import {getUsers} from "../Api/api";
 
 
 const FavoriteContainer = (props) => {
 
-    // componentDidMount() {
-    //     getUsers(this.props.toggleIsFetching, this.props.setUsers,)
-    // }
-
     useEffect(() => {
         //получаем пользователей с нашей базы Firebase и выводим их
-        getUsers(props.toggleIsFetching, props.setUsers,)
+        props.getUsersThunkCreator()
 
     }, [])
-
 
     return (
         <>
@@ -33,8 +32,11 @@ const FavoriteContainer = (props) => {
                         :
                         <Favorite
                             users={props.users}
-                            follow={props.follow}
-                            unfollow={props.unfollow}
+                            toggleInProgress={props.toggleInProgress}
+                            favoriteInProgress={props.favoriteInProgress}
+                            following={props.following}
+                            unfollowing={props.unfollowing}
+                            delUser={props.delUser}
                         />
                     }
                 </>
@@ -50,9 +52,10 @@ let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         isFetching: state.usersPage.isFetching,
+        favoriteInProgress: state.usersPage.favoriteInProgress
     }
 }
 
 export default connect(mapStateToProps, {
-    follow, unfollow, setUsers, toggleIsFetching
+    toggleInProgress, getUsersThunkCreator, following, unfollowing, delUser
 })(FavoriteContainer);
