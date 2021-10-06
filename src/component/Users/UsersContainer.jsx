@@ -27,6 +27,7 @@ const UsersContainer = (props) => {
                         <Preloader/>
                         :
                         <Users
+                            isAuth={props.isAuth}
                             users={props.users}
                             toggleInProgress={props.toggleInProgress}
                             favoriteInProgress={props.favoriteInProgress}
@@ -41,14 +42,13 @@ const UsersContainer = (props) => {
     );
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state) => ({
+    users: state.usersPage.users,
+    isFetching: state.usersPage.isFetching,
+    favoriteInProgress: state.usersPage.favoriteInProgress,
+    isAuth: state.authUser.isAuth,
 
-    return {
-        users: state.usersPage.users,
-        isFetching: state.usersPage.isFetching,
-        favoriteInProgress: state.usersPage.favoriteInProgress
-    }
-}
+})
 
 export default connect(mapStateToProps, {
     toggleInProgress, getUsersThunkCreator, following, unfollowing, delUser

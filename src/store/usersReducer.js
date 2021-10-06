@@ -1,7 +1,7 @@
 import {
     ADD_FAVORITE_USERS,
     REMOVE_FAVORITE_USERS, REMOVE_USER,
-    SET_USERS,
+    GET_USERS,
     TOGGLE_IS_FAVORING_PROGRESS,
     TOGGLE_IS_FETCHING
 } from "./actionsType";
@@ -18,20 +18,13 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: {...state.users, [action.user]: {...state.users[action.user], followed: true}}
-                // Object.keys(state.users).map((user) => {
-                //         if (state.users[user].id === action.id) {
-                //             return {...state.users[user], followed: true}
-                //         }
-                //         return state.users[user]
-                //     }
-                // )
             }
         case REMOVE_FAVORITE_USERS:
             return {
                 ...state,
                 users: {...state.users, [action.user]: {...state.users[action.user], followed: false}}
             }
-        case SET_USERS: {
+        case GET_USERS: {
             return {...state, users: action.users}
         }
         case REMOVE_USER: {

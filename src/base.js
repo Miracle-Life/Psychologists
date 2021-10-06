@@ -1,6 +1,7 @@
 import {getDatabase, ref, child, get, update} from "firebase/database";
-import { initializeApp } from "firebase/app";
+import {initializeApp} from "firebase/app";
 import {getFirestore} from "firebase/firestore"
+import {getAuth} from "firebase/auth";
 
 export const firebaseApp = initializeApp({
     apiKey: "AIzaSyDO7bNm5bKX05O2sCTkyMcmjx3Uq18ltss",
@@ -14,6 +15,9 @@ export const firebaseApp = initializeApp({
 })
 export const db = getDatabase()
 export const dbRef = ref(getDatabase());
+///////
+export const auth = getAuth();
+export const currentUser = auth.currentUser;
 //
 export const dbFirestore = getFirestore()
 

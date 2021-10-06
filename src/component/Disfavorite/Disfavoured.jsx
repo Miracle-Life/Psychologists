@@ -9,7 +9,7 @@ const Disfavoured = (props) => {
     const following = props.following
     const unfollowing = props.unfollowing
     const delUser = props.delUser
-
+    const isAuth = props.isAuth
     return (
         <div className='container'>
             <h4>Disfavored Users</h4>
@@ -21,6 +21,7 @@ const Disfavoured = (props) => {
                 following={following}
                 unfollowing={unfollowing}
                 delUser={delUser}
+                isAuth={isAuth}
             />
         </div>
     )

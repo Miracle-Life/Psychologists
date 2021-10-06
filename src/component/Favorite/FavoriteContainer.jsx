@@ -31,6 +31,7 @@ const FavoriteContainer = (props) => {
                         <Preloader/>
                         :
                         <Favorite
+                            isAuth={props.isAuth}
                             users={props.users}
                             toggleInProgress={props.toggleInProgress}
                             favoriteInProgress={props.favoriteInProgress}
@@ -52,7 +53,8 @@ let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         isFetching: state.usersPage.isFetching,
-        favoriteInProgress: state.usersPage.favoriteInProgress
+        favoriteInProgress: state.usersPage.favoriteInProgress,
+        isAuth: state.authUser.isAuth,
     }
 }
 

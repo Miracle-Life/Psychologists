@@ -1,7 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
+import {getAuthUserData, logout} from "../../store/authReducer";
 
-function NavBar() {
+
+function NavBar({email, login, photo, getAuthUserData, logout}) {
+
+    useEffect(() => {
+        getAuthUserData()
+    }, [])
+
+    const LoginOrEmail = login ? login : email
+
     return (
         <div className='container'>
             <nav className="navbar fixed-top between navbar-expand navbar-dark bg-dark">
@@ -15,12 +25,41 @@ function NavBar() {
                             <NavLink className="nav-link" to="/disfavoured">Disfavored</NavLink>
                             <NavLink className="nav-link" to="/analytic">Analytic</NavLink>
                         </nav>
-                    </div>
 
+                    </div>
+                    {LoginOrEmail ?
+                        <div>
+                            {photo === null ?
+                                <>
+                                    <label style={{color: 'white'}} className="form-label">{`${LoginOrEmail}`}</label>
+                                    <button onClick={logout} className="btn mx-2 btn-warning">Logout</button>
+                                </>
+
+                                :
+                                <>
+                                    <label style={{color: 'white'}}
+                                           className="form-label">{LoginOrEmail}</label>
+                                    <img src={photo} className="mx-2" style={{width: '3rem', borderRadius: '50%'}}
+                                         alt=""/>
+                                    <button onClick={logout} className="btn mx-2 btn-warning">Logout</button>
+                                </>
+                            }
+                        </div>
+                        :
+                        <NavLink to={'/login'} className="d-flex btn btn-outline-success">Login</NavLink>}
                 </div>
             </nav>
         </div>
     )
 }
 
-export default NavBar
+const mapStateToProps = (state) => ({
+    isAuth: state.authUser.isAuth,
+    email: state.authUser.email,
+    login: state.authUser.login,
+    photo: state.authUser.photo
+
+})
+export default connect(mapStateToProps, {getAuthUserData, logout})(NavBar)
+
+

@@ -2,7 +2,8 @@ import React from 'react';
 import {db} from "../../base";
 import {child, update, push, ref, set, get} from "firebase/database";
 
-const AddUser = () => {
+const AddUser = (props) => {
+
     let User
     const nameRef = React.createRef();
     const emailRef = React.createRef();

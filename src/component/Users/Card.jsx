@@ -44,7 +44,7 @@ const Card = (props) => {
 
                                 <button
                                     className={` ${props.info[user].followed ? 'btn btn-secondary' : 'btn btn-success'}`}
-                                    disabled={props.inProgress.some(id => id === props.info[user].id)}
+                                    disabled={!props.isAuth ? 'true' : props.inProgress.some(id => id === props.info[user].id)}
                                     onClick={() => {
                                         props.info[user].followed ?
                                             props.unfollowing(props.info[user].id, user)
@@ -56,6 +56,7 @@ const Card = (props) => {
                                 </button>
                                 <button
                                     className='btn btn-danger'
+                                    disabled={!props.isAuth && true}
                                     onClick={() => {
                                         props.delUser(props.info[user].id, user)
                                     }}>Delete

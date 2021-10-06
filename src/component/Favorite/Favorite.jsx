@@ -20,6 +20,7 @@ const Favorite = (props) => {
                 following={following}
                 unfollowing={unfollowing}
                 delUser={delUser}
+                isAuth={props.isAuth}
             />
         </div>
     )
