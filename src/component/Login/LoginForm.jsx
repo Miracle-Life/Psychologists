@@ -5,12 +5,13 @@ const LoginForm = (props) => {
 
     return (
         <Form className='col-4 m-auto'>
-            <label className="form-label mt-2 mx-4" htmlFor="login">Login</label>
+            <label className="form-label mt-2 mx-4" htmlFor="email">Email our Login</label>
             <Field
                 className='form-control form-control-sm'
-                id="login"
-                name="login"
-                placeholder="You login"
+                id="email"
+                name="email"
+                placeholder="You email our login"
+                type="email"
             />
 
             <label className="form-label mt-2 mx-4" htmlFor="password">Password</label>
@@ -18,17 +19,10 @@ const LoginForm = (props) => {
                 className='form-control form-control-sm'
                 id="password"
                 name="password"
-                placeholder="Password"
+                placeholder="You password"
                 type="password"
             />
-            <label className="form-label mt-2 mx-4" htmlFor="email">Email</label>
-            <Field
-                className='form-control form-control-sm'
-                id="email"
-                name="email"
-                placeholder="You Email"
-                type="email"
-            />
+
             <button type="submit" className="btn btn-secondary mt-3">Login</button>
         </Form>
 

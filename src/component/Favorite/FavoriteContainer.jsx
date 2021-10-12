@@ -31,13 +31,14 @@ const FavoriteContainer = (props) => {
                         <Preloader/>
                         :
                         <Favorite
-                            isAuth={props.isAuth}
-                            users={props.users}
-                            toggleInProgress={props.toggleInProgress}
-                            favoriteInProgress={props.favoriteInProgress}
-                            following={props.following}
-                            unfollowing={props.unfollowing}
-                            delUser={props.delUser}
+                            {...props}
+                            // isAuth={props.isAuth}
+                            // users={props.users}
+                            // toggleInProgress={props.toggleInProgress}
+                            // favoriteInProgress={props.favoriteInProgress}
+                            // following={props.following}
+                            // unfollowing={props.unfollowing}
+                            // delUser={props.delUser}
                         />
                     }
                 </>

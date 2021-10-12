@@ -37,6 +37,7 @@ export const setAuthUserData = (email, id, login, photo, isAuth) => ({
 
 export const getAuthUserData = () => (dispatch) => {
     onAuthStateChanged(auth, (currentUser) => {
+        console.log(currentUser)
         if (currentUser) {
             dispatch(setAuthUserData(
                 currentUser.email,

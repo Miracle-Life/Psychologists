@@ -3,7 +3,7 @@ import {
 } from "./actionsType";
 import {onValue, ref, query, orderByChild, equalTo} from "firebase/database";
 import {db} from "../base";
-import {usersAPI} from "../component/Api/api";
+import {usersAPI} from "../Api/api";
 
 
 export const acceptFollow = (userId, user) => ({type: ADD_FAVORITE_USERS, userId, user})
@@ -15,9 +15,9 @@ export const deleteUser = (userId, user) => ({type: REMOVE_USER, userId, user})
 
 
 export const setUserThunkCreator = (name, email, photo, type) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true))
-        usersAPI.setUser(name, email, photo, type)
+        await usersAPI.setUser(name, email, photo, type)
         dispatch(toggleIsFetching(false))
     }
 }
@@ -36,35 +36,32 @@ export const getUsersThunkCreator = () => {
 }
 
 export const following = (userId, user) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleInProgress(true, userId))
-        usersAPI.setFollow(user).then(() => {
-            // console.log('success')
-            dispatch(acceptFollow(userId, user))
-            dispatch(toggleInProgress(false, userId))
-        })
+        await usersAPI.setFollow(user)
+        dispatch(acceptFollow(userId, user))
+        dispatch(toggleInProgress(false, userId))
+
     }
 }
 
 
 export const unfollowing = (userId, user) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleInProgress(true, userId))
-        usersAPI.setUnfollow(user)
-            .then(() => {
-                dispatch(acceptUnfollow(userId, user))
-                dispatch(toggleInProgress(false, userId))
-            })
+        await usersAPI.setUnfollow(user)
+        dispatch(acceptUnfollow(userId, user))
+        dispatch(toggleInProgress(false, userId))
+
     }
 }
 
 export const delUser = (userId, user) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true))
-        usersAPI.setDelete(user)
-            .then(() => {
-                // dispatch(deleteUser(user))
-                dispatch(toggleInProgress(false, userId))
-            })
+        await usersAPI.setDelete(user)
+        // dispatch(deleteUser(user))
+        dispatch(toggleInProgress(false, userId))
+
     }
 }

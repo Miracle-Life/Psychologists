@@ -35,6 +35,7 @@ const Users = (props) => {
                     </div>
                 </div>
                 <div className='col-9'>
+
                     <Card
                         isAuth={props.isAuth}
                         users={user}
@@ -45,6 +46,7 @@ const Users = (props) => {
                         unfollowing={unfollowing}
                         delUser={delUser}
                     />
+
                 </div>
 
 

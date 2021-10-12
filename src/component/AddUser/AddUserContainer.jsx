@@ -6,7 +6,7 @@ import {
     toggleInProgress,
 } from "../../store/actions";
 import {compose} from "redux";
-import {withAuthRedirect} from "../HOC/withAuthRedirect.jsx";
+import {withAuthRedirect} from "../../HOC/withAuthRedirect.jsx";
 
 
 const AddUserContainer = (props) => {

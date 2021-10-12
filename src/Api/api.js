@@ -1,5 +1,5 @@
 import {child, get, onValue, ref, set, update} from "firebase/database";
-import {auth, currentUser, db, dbRef} from "../../base";
+import {auth, currentUser, db, dbRef} from "../base";
 import {
     onAuthStateChanged,
     signInWithEmailAndPassword,
