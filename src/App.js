@@ -18,7 +18,7 @@ const UsersContainer = lazy(() => import('./component/Users/UsersContainer'));
 
 const App = () => {
     return (
-        <Router>
+        <>
             <NavBar/>
             <div className='container'>
                 <Suspense fallback={<Preloader/>}>
@@ -33,7 +33,7 @@ const App = () => {
                     </Switch>
                 </Suspense>
             </div>
-        </Router>
+        </>
     )
         ;
 }
