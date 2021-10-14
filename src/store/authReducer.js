@@ -53,9 +53,9 @@ export const getAuthUserData = () => (dispatch) => {
     })
 }
 
-export const loginEmailAndPassword = (email, password) => (dispatch) => {
+export const loginEmailAndPassword = (email, password, setFieldError) => (dispatch) => {
 
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password, setFieldError)
         .then((userCredential) => {
             const user = userCredential.user;
             if (user !== null) {
@@ -67,10 +67,14 @@ export const loginEmailAndPassword = (email, password) => (dispatch) => {
             console.log('Signed in', user)
         })
         .catch((error) => {
+
             const errorCode = error.code;
             console.log('signInWithEmailAndPassword-errorCode', errorCode)
             const errorMessage = error.message;
             console.log('signInWithEmailAndPassword-errorMessage', errorMessage)
+
+            setFieldError("myErrorFieldName", errorCode)
+
         });
 }
 

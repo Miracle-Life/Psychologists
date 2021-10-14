@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from "./LoginForm";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import {Formik, Field, Form} from 'formik';
+import {Formik} from 'formik';
 import {getAuthUserData, loginEmailAndPassword, loginInWithGoogle, logout} from "../../store/authReducer";
 
 const Login = (props) => {
@@ -21,13 +21,29 @@ const Login = (props) => {
             <h1>Login Page</h1>
             {props.isAuth ? "" :
                 <Formik
-                    initialValues={{}}
-                    onSubmit={async (values) => {
-                        // await new Promise((r) => setTimeout(r, 500));
-                        props.loginEmailAndPassword(values.email, values.password)
+                    initialValues={{
+                        email: '',
+                        password: '',
+                    }}
+                    // render={props => {
+                    //     return < LoginForm {...props}/>
+                    // }}
+                    onSubmit={(values, {
+                        authError,
+                        setError,
+                        setErrors,
+                        setSubmitting,
+                        resetForm,
+                        setFieldError
+                    }) => {
+                        // resetForm()
+                        props.loginEmailAndPassword(values.email, values.password, setFieldError)
                     }}
                 >
-                    <LoginForm {...props}/>
+                    {({errors, touched}) => (
+                        < LoginForm errors={errors} {...props}/>
+                    )}
+
                 </Formik>
             }
 

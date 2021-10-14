@@ -1,8 +1,7 @@
 import React from 'react';
-import {Formik, Field, Form} from 'formik';
+import {Field, Form} from 'formik';
 
-const LoginForm = (props) => {
-
+const LoginForm = ({errors}) => {
     return (
         <Form className='col-4 m-auto'>
             <label className="form-label mt-2 mx-4" htmlFor="email">Email our Login</label>
@@ -22,8 +21,13 @@ const LoginForm = (props) => {
                 placeholder="You password"
                 type="password"
             />
-
             <button type="submit" className="btn btn-secondary mt-3">Login</button>
+            {errors.myErrorFieldName &&
+            <div className="form-control is-invalid mt-3">
+                {/*Email our Password is wrong*/}
+                {errors.myErrorFieldName}
+            </div>
+            }
         </Form>
 
         // <div>
