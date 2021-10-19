@@ -1,4 +1,5 @@
 import React from 'react';
+// import {useForm} from "react-hook-form";
 
 export const Input = ({meta, input, ...props}) => {
     const showError = meta.touched && meta.error
@@ -15,4 +16,21 @@ export const Input = ({meta, input, ...props}) => {
     );
 };
 
+
+// export function Inputs({register, name, ...rest}) {
+//     return <input {...register(name)} {...rest} />;
+// }
+//
+//
+// export function Select({register, options, name, ...rest}) {
+//     return (
+//         <select {...register(name)} {...rest}>
+//             {options.map(value => (
+//                 <option key={value} value={value}>
+//                     {value}
+//                 </option>
+//             ))}
+//         </select>
+//     );
+// }
 

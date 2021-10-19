@@ -16,7 +16,7 @@ function NavBar({email, login, photo, getAuthUserData, logout}) {
         <div className='container'>
             <nav className="navbar fixed-top between navbar-expand navbar-dark bg-dark">
                 <div className="container-fluid ">
-                    <NavLink className="navbar-brand" to="/">Navbar</NavLink>
+                    <NavLink className="navbar-brand" to="/">Psychologists</NavLink>
                     <div className="collapse justify-content-center navbar-collapse" id="navbarNavAltMarkup">
                         <nav className="navbar-nav justify-content-center">
                             <NavLink className="nav-link" exact to="/">Add users</NavLink>
