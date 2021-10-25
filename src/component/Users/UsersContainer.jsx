@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {delUser, following, getUsersThunkCreator, toggleInProgress, unfollowing,} from "../../store/actions";
-import {connect, useDispatch, useSelector} from "react-redux";
+import {connect} from "react-redux";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import Alert from "../common/Alert/Alert";
-import {useHistory, useLocation, withRouter} from "react-router-dom";
+//import {useHistory, useLocation, withRouter} from "react-router-dom";
 
 
 const UsersContainer = (props) => {
@@ -16,11 +16,14 @@ const UsersContainer = (props) => {
     // const dispatch = useDispatch()
     // const users = useSelector(state => state.usersPage.users)
 
+    const [filter, setFilter] = useState();
+
     useEffect(() => {
         //получаем пользователей с нашей базы Firebase и выводим их
-        props.getUsersThunkCreator()
+        props.getUsersThunkCreator(filter)
+        console.log('1')
 
-    }, [])
+    }, [filter])
 
     return (
         <>
@@ -37,13 +40,7 @@ const UsersContainer = (props) => {
                         :
                         <Users
                             {...props}
-                            // isAuth={props.isAuth}
-                            // users={props.users}
-                            // toggleInProgress={props.toggleInProgress}
-                            // favoriteInProgress={props.favoriteInProgress}
-                            // following={props.following}
-                            // unfollowing={props.unfollowing}
-                            // delUser={props.delUser}
+                            setFilter={setFilter}
                         />
                     }
                 </>

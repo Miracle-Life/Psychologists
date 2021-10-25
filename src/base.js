@@ -2,6 +2,7 @@ import {getDatabase, ref, child, get, update} from "firebase/database";
 import {initializeApp} from "firebase/app";
 import {getFirestore} from "firebase/firestore"
 import {getAuth} from "firebase/auth";
+// import {getStorage, ref} from "firebase/storage";
 
 export const firebaseApp = initializeApp({
     apiKey: "AIzaSyDO7bNm5bKX05O2sCTkyMcmjx3Uq18ltss",
@@ -20,6 +21,12 @@ export const auth = getAuth();
 export const currentUser = auth.currentUser;
 //
 export const dbFirestore = getFirestore()
+////
+// export const storage = getStorage(firebaseApp)
+// export const storageRef = ref(storage);
+//
+// export const imagesRef = ref(storageRef, 'img');
+// const mountainImagesRef = ref(storage, 'img/mountains.jpg');
 
 // export const analytics = getAnalytics();
 // logEvent(analytics, 'notification_received');

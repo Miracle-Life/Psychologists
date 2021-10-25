@@ -4,6 +4,7 @@ import {Field, Form} from 'formik';
 const LoginForm = ({errors}) => {
     return (
         <Form className='col-4 m-auto'>
+            <h3><b>Sign in</b></h3>
             <label className="form-label mt-2 mx-4" htmlFor="email">Email our Login</label>
             <Field
                 className='form-control form-control-sm'

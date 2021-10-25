@@ -6,11 +6,12 @@ import {getAuthUserData, logout} from "../../store/authReducer";
 
 function NavBar({email, login, photo, getAuthUserData, logout}) {
 
-    useEffect(() => {
-        getAuthUserData()
+    useEffect(async () => {
+        await getAuthUserData()
     }, [])
 
     const LoginOrEmail = login ? login : email
+    console.log(photo)
 
     return (
         <div className='container'>
@@ -31,22 +32,28 @@ function NavBar({email, login, photo, getAuthUserData, logout}) {
                         <div>
                             {photo === null ?
                                 <>
-                                    <label style={{color: 'white'}} className="form-label">{`${LoginOrEmail}`}</label>
+                                    <NavLink to={'/admin_page'} style={{color: 'white', textDecoration: 'none'}}
+                                             className="form-label-outline">{LoginOrEmail}</NavLink>
+                                    {/*<label style={{color: 'white'}} className="form-label">{`${LoginOrEmail}`}</label>*/}
                                     <button onClick={logout} className="btn mx-2 btn-warning">Logout</button>
                                 </>
 
                                 :
-                                <>
-                                    <label style={{color: 'white'}}
-                                           className="form-label">{LoginOrEmail}</label>
+                                <div className='flex'>
+                                    <NavLink to={'/admin_page'} style={{color: 'white', textDecoration: 'none'}}
+                                             className="form-label-outline">{LoginOrEmail}</NavLink>
+                                    {/*<label style={{color: 'white'}} className="form-label">{LoginOrEmail}</label>*/}
                                     <img src={photo} className="mx-2" style={{width: '3rem', borderRadius: '50%'}}
                                          alt=""/>
                                     <button onClick={logout} className="btn mx-2 btn-warning">Logout</button>
-                                </>
+                                </div>
                             }
                         </div>
                         :
-                        <NavLink to={'/login'} className="d-flex btn btn-outline-success">Login</NavLink>}
+                        <div className="d-flex">
+                            <NavLink to={'/signin'} className="d-flex btn btn-outline-success mx-2">Sign In</NavLink>
+                            <NavLink to={'/signup'} className="d-flex btn btn-outline-success mx-2">Sign Up</NavLink>
+                        </div>}
                 </div>
             </nav>
         </div>
@@ -55,9 +62,9 @@ function NavBar({email, login, photo, getAuthUserData, logout}) {
 
 const mapStateToProps = (state) => ({
     isAuth: state.authUser.isAuth,
-    email: state.authUser.email,
-    login: state.authUser.login,
-    photo: state.authUser.photo
+    email: state.authUser.User.email,
+    login: state.authUser.User.displayName,
+    photo: state.authUser.User.photoURL
 
 })
 export default connect(mapStateToProps, {getAuthUserData, logout})(NavBar)

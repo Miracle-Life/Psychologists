@@ -49,17 +49,17 @@ export const authApi = {
 
     //Создать нового пользователя с email и password
     createUserWithEmailAndPassword(email, password) {
-        return signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log('Create User Successfully', user)
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                console.log('createUserWithEmailAndPassword-errorCode', errorCode)
-                const errorMessage = error.message;
-                console.log('createUserWithEmailAndPassword-errorMessage', errorMessage)
-            });
+        // return signInWithEmailAndPassword(auth, email, password)
+        //     .then((userCredential) => {
+        //         const user = userCredential.user;
+        //         console.log('Create User Successfully', user)
+        //     })
+        //     .catch((error) => {
+        //         const errorCode = error.code;
+        //         console.log('createUserWithEmailAndPassword-errorCode', errorCode)
+        //         const errorMessage = error.message;
+        //         console.log('createUserWithEmailAndPassword-errorMessage', errorMessage)
+        //     });
     },
 
     //Войти в аккаунт с использованием email и password если пользователь зарегистрирован

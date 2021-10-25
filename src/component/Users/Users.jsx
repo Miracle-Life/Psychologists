@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import Card from "./Card";
+import {useForm} from "react-hook-form";
 
 
 const Users = (props) => {
@@ -11,31 +12,56 @@ const Users = (props) => {
     const unfollowing = props.unfollowing
     const delUser = props.delUser
 
-    // const [opened, setOpened] = useState(false);
-    // const toggleOpen = () => {
-    //     setOpened(!opened)
-    // }
-    // const menuClass = `dropdown-menu${opened ? " show" : ""}`
+    const defaultValues = {
+        type: ""
+    }
+
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        reset,
+        watch,
+        onTouched,
+        formState: {errors, isDirty, isSubmitting, touched, submitCount, isSubmitSuccessful}
+    } = useForm({defaultValues});
+
+    const onSubmit = (data, e) => {
+        console.log('data', data.type)
+        props.setFilter(data.type)
+    }
 
     return (
         <div className='container'>
             <h4>All Users</h4>
             <div className='row'>
                 <div className='col-3'>
-                    <div className="dropdown">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            Кнопка выпадающего списка
-                        </button>
-                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a className="dropdown-item" href="#">Действие</a></li>
-                            <li><a className="dropdown-item" href="#">Другое действие</a></li>
-                            <li><a className="dropdown-item" href="#">Что-то еще здесь</a></li>
-                        </ul>
-                    </div>
+                    <form className='col m-auto' onSubmit={handleSubmit(onSubmit)}>
+                        <label className="form-label mb-3" htmlFor="name"><b>Type user</b></label>
+                        <select
+                            className="form-select"
+                            id="type"
+                            {...register('type')}
+                            name="type"
+                        >
+                            <option key="Категория" value={''}>Выбрать категорию</option>
+                            <option key="Психолог" value={'Психолог'}>Психолог</option>
+                            <option key="Психотерапевт" value={'Психотерапевт'}>Психотерапевт</option>
+                            <option key="Психиатр" value={'Психиатр'}>Психиатр</option>
+
+                        </select>
+                        <div className='d-flex justify-content-between'>
+                            <button type="button" className="btn btn-warning mt-3" onClick={() => reset({
+                                    type: "",
+                                },
+                                props.setFilter(null)
+                            )}>Reset
+                            </button>
+                            <button type="submit" className="btn btn-primary mt-3">Search</button>
+                        </div>
+                    </form>
                 </div>
                 <div className='col-9'>
-
                     <Card
                         isAuth={props.isAuth}
                         users={user}
@@ -46,14 +72,9 @@ const Users = (props) => {
                         unfollowing={unfollowing}
                         delUser={delUser}
                     />
-
                 </div>
-
-
             </div>
-
         </div>
-
     )
 }
 

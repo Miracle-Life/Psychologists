@@ -22,11 +22,11 @@ export const setUserThunkCreator = (name, email, photo, type) => {
     }
 }
 
-export const getUsersThunkCreator = () => {
+export const getUsersThunkCreator = (optionFilter) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
-        const mostViewedSort = query(ref(db, 'psychologists'), orderByChild('type'), equalTo('Психолог'))
-        const starCountRef = ref(db, "psychologists");
+        const mostViewedSort = query(ref(db, 'psychologists'), orderByChild('type'), equalTo(`${optionFilter}`))
+        const starCountRef = optionFilter ? mostViewedSort : ref(db, "psychologists");
         onValue(starCountRef, (res) => {
             const users = res.val();
             dispatch(getUsers(users))

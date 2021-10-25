@@ -3,9 +3,9 @@ import LoginForm from "./LoginForm";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {Formik} from 'formik';
-import {getAuthUserData, loginEmailAndPassword, loginInWithGoogle, logout} from "../../store/authReducer";
+import {loginEmailAndPassword, loginInWithGoogle, logout} from "../../store/authReducer";
 
-const Login = (props) => {
+const SignIn = (props) => {
 
     if (props.isAuth) {
         return <Redirect to={'/users'}/>
@@ -17,8 +17,7 @@ const Login = (props) => {
 
 
     return (
-        <div>
-            <h1>Login Page</h1>
+        <div className=" justify-content-center pt-3">
             {props.isAuth ? "" :
                 <Formik
                     initialValues={{
@@ -63,5 +62,5 @@ const Login = (props) => {
 const mapStateToProps = (state) => ({
     isAuth: state.authUser.isAuth,
 })
-export default connect(mapStateToProps, {loginEmailAndPassword, getAuthUserData, loginInWithGoogle, logout})(Login)
+export default connect(mapStateToProps, {loginEmailAndPassword, loginInWithGoogle, logout})(SignIn)
 
