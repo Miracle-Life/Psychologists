@@ -11,7 +11,6 @@ function NavBar({email, login, photo, getAuthUserData, logout}) {
     }, [])
 
     const LoginOrEmail = login ? login : email
-    console.log(photo)
 
     return (
         <div className='container'>

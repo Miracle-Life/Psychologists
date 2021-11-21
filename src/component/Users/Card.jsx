@@ -11,7 +11,8 @@ const Card = (props) => {
                         <div className="card h-100">
                             <img src={props.info[user].photo === "null" ? image : props.info[user].photo}
                                  className="card-img-top"
-                                 style={{height: "17rem", objectFit: "cover"}}
+                                // style={{height: "16rem", objectFit: "contain"}}
+                                 style={{objectFit: "contain"}}
                                  alt="..."/>
                             <div className="card-body">
                                 <h4 className="card-title mb-4">{user}</h4>
