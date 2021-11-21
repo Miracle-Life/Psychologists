@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {delUser, following, getUsersThunkCreator, toggleInProgress, unfollowing,} from "../../store/actions";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import Alert from "../common/Alert/Alert";
@@ -14,15 +14,22 @@ const UsersContainer = (props) => {
     // console.log('location', location)
     // console.log('history', history)
     // const dispatch = useDispatch()
+    //**************************
     // const users = useSelector(state => state.usersPage.users)
+    // console.log('users', users)
+    // const isFetching = useSelector(state => state.usersPage.isFetching)
+    // console.log('isFetching', isFetching)
+    // const favoriteInProgress = useSelector(state => state.usersPage.favoriteInProgress)
+    // console.log('favoriteInProgress', favoriteInProgress)
+    // const isAuth = useSelector(state => state.authUser.isAuth)
+    // console.log('isAuth', isAuth)
+    //*************************
 
     const [filter, setFilter] = useState();
 
     useEffect(() => {
         //получаем пользователей с нашей базы Firebase и выводим их
         props.getUsersThunkCreator(filter)
-        console.log('1')
-
     }, [filter])
 
     return (
